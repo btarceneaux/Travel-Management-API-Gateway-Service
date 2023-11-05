@@ -43,13 +43,13 @@ pipeline {
             steps {
                 echo '----------------- Deploying docker image ----------'
                 sh '''
-                 (if  [ $(docker ps -a | grep eapi-gateway-webservice | cut -d " " -f1) ]; then \
+                 (if  [ $(docker ps -a | grep api-gateway-webservice | cut -d " " -f1) ]; then \
                         echo $(docker rm -f api-gateway-webservice); \
                         echo "---------------- successfully removed api-gateway-webservice ----------------"
                      else \
                     echo OK; \
                  fi;);
-            docker container run --restart always --name api-gateway-webservicee -p 9000:9000 -d api-gateway-webservice && docker network connect travel-management-network api-registry-webservice
+            docker container run --restart always --name api-gateway-webservice -p 9000:9000 -d api-gateway-webservice && docker network connect travel-management-network api-gateway-webservice
             '''
             }
         }
