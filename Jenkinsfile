@@ -49,7 +49,7 @@ pipeline {
                      else \
                     echo OK; \
                  fi;);
-            docker container run --restart always --name api-gateway-webservicee -p 9000:9000 -d api-gateway-webservice
+            docker container run --restart always --name api-gateway-webservicee -p 9000:9000 -d api-gateway-webservice && docker network connect travel-management-network api-registry-webservice
             '''
             }
         }
