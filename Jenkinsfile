@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo '----------------- Building docker image ----------'
                 sh '''
-                    docker image build -t api-gateway-webservice .
+                    docker image build -t api-registry-webservic .
                 '''
             }
         }
@@ -43,13 +43,13 @@ pipeline {
             steps {
                 echo '----------------- Deploying docker image ----------'
                 sh '''
-                 (if  [ $(docker ps -a | grep eapi-gateway-webservice | cut -d " " -f1) ]; then \
-                        echo $(docker rm -f api-gateway-webservice); \
-                        echo "---------------- successfully removed api-gateway-webservice ----------------"
+                 (if  [ $(docker ps -a | grep eapi-registry-webservic | cut -d " " -f1) ]; then \
+                        echo $(docker rm -f api-registry-webservic); \
+                        echo "---------------- successfully removed api-registry-webservic ----------------"
                      else \
                     echo OK; \
                  fi;);
-            docker container run --restart always --name api-gateway-webservice -p 9000:9000 -d api-gateway-webservice
+            docker container run --restart always --name api-registry-webservice -p 9000:9000 -d api-registry-webservic
             '''
             }
         }
